@@ -3,6 +3,7 @@ import { getAllNews, getNewsById } from '../../../../news';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import NativeAd from '../../../../components/NativeAd';
 
 export function generateStaticParams() {
   const news = getAllNews();
@@ -256,6 +257,9 @@ export default async function NewsArticlePage({
             </div>
           </div>
         )}
+
+        {/* Native Sponsored Recommendations */}
+        <NativeAd />
 
         {/* Related News */}
         {otherNews.length > 0 && (

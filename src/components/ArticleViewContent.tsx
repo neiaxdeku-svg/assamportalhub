@@ -3,6 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 import { ChevronLeft, ChevronRight, Zap, Info } from 'lucide-react';
 import { useLang } from './LangProvider';
+import NativeAd from './NativeAd';
 
 export default function ArticleViewContent({ article }: { article: any }) {
   const { lang } = useLang();
@@ -128,6 +129,9 @@ export default function ArticleViewContent({ article }: { article: any }) {
           ))}
         </div>
       </section>
+
+      {/* Native Sponsored Banner */}
+      <NativeAd />
 
     </article>
   );
