@@ -23,3 +23,23 @@ export interface ArticleData {
   en: LocalizedContent;
   as: LocalizedContent;
 }
+
+export interface LocalizedNewsContent {
+  title: string;
+  summary: string;
+  content: string;
+  keyPoints: string[];
+}
+
+export interface NewsItem {
+  id: string;
+  category: string;
+  keywords: string[];
+  metaDescription: string;
+  publishDate: string;
+  sourceUrl: string;
+  sourceName: string;
+  en: LocalizedNewsContent;
+  as: LocalizedNewsContent;
+}
+
