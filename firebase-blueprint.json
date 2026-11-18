@@ -1,0 +1,20 @@
+{
+  "collections": [
+    {
+      "name": "news",
+      "description": "Auto-generated news articles and scheme updates for Assam Portal Hub.",
+      "securityRules": {
+        "read": "true",
+        "write": "false"
+      },
+      "schema": {
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "summary": { "type": "string" },
+        "category": { "type": "string" },
+        "publishDate": { "type": "timestamp" },
+        "sourceUrl": { "type": "string" }
+      }
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "name": "AssamPortalHub",
+  "description": "A clean, mobile-first utility directory providing direct links and step-by-step guides for essential Assam government web portals like APDCL, Samarth, NVSP, and Parivahan.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
