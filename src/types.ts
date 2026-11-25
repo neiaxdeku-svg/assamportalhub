@@ -41,5 +41,5 @@ export interface NewsItem {
   sourceName: string;
   en: LocalizedNewsContent;
   as: LocalizedNewsContent;
+  uploadedAt?: string; // Timestamp when the article was added to our platform
 }
-

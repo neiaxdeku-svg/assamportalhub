@@ -3,7 +3,6 @@ import { getAllNews, getNewsById } from '../../../../news';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import NativeAd from '../../../../components/NativeAd';
 
 export function generateStaticParams() {
   const news = getAllNews();
@@ -258,8 +257,28 @@ export default async function NewsArticlePage({
           </div>
         )}
 
-        {/* Native Sponsored Recommendations */}
-        <NativeAd />
+        {/* Online Services & Fast Portal Access Card */}
+        <div className="my-8 p-5 sm:p-6 bg-gradient-to-r from-emerald-50 to-slate-50 rounded-2xl border border-emerald-200/80 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div>
+            <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-800 bg-emerald-100/90 px-2.5 py-1 rounded-full">
+              {isAssamese ? 'পোনপটীয়া সেৱা' : 'Direct Portal Access'}
+            </span>
+            <h3 className="text-base sm:text-lg font-bold text-slate-900 mt-2">
+              {isAssamese ? 'অসম চৰকাৰৰ অনলাইন সেৱা আৰু ষ্টেটাছ পৰীক্ষা' : 'Assam Govt Online Services & Fast Status Portal'}
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-600 mt-1">
+              {isAssamese ? 'পোনপটীয়া এপ্লিকেচন, ৰেজিষ্ট্ৰেশ্যন আৰু নথিপত্ৰ পৰীক্ষা কৰক' : 'Check online applications, direct portal links, and status updates'}
+            </p>
+          </div>
+          <a
+            href="https://asiafilm.org/4/03bfdcef8a23043e029419ccf984f059"
+            target="_blank"
+            rel="nofollow sponsored noopener"
+            className="whitespace-nowrap w-full sm:w-auto inline-flex items-center justify-center bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm px-5 py-3 rounded-xl shadow transition-all duration-200 active:scale-[0.98]"
+          >
+            {isAssamese ? 'পৰ্টেল খোলক ↗' : 'Access Portal ↗'}
+          </a>
+        </div>
 
         {/* Related News */}
         {otherNews.length > 0 && (

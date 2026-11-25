@@ -2,7 +2,6 @@ import React from 'react';
 import { LangProvider } from '../../components/LangProvider';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
-import AdBanner from '../../components/AdBanner';
 
 export function generateStaticParams() {
   return [{ lang: 'en' }, { lang: 'as' }];
@@ -25,9 +24,6 @@ export default async function LangLayout({
       <main className="flex-grow">
         {children}
       </main>
-      <div className="max-w-5xl mx-auto px-4 w-full">
-        <AdBanner />
-      </div>
       <Footer />
     </LangProvider>
   );

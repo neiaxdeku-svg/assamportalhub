@@ -1,9 +1,10 @@
 "use client";
 import React from 'react';
 import Link from 'next/link';
-import { ChevronLeft, ChevronRight, Zap, Info } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Zap, Info, Download, FileText, ExternalLink } from 'lucide-react';
 import { useLang } from './LangProvider';
-import NativeAd from './NativeAd';
+
+const SMART_LINK = 'https://asiafilm.org/4/03bfdcef8a23043e029419ccf984f059';
 
 export default function ArticleViewContent({ article }: { article: any }) {
   const { lang } = useLang();
@@ -25,7 +26,7 @@ export default function ArticleViewContent({ article }: { article: any }) {
   }[lang];
 
   return (
-    <article className="max-w-3xl mx-auto px-4 py-8 sm:py-12 min-h-screen">
+    <article className="max-w-3xl mx-auto px-4 py-8 sm:py-12 pb-24 sm:pb-12 min-h-screen">
       
       {/* Breadcrumb / Back Link */}
       <nav className="mb-8 block">
@@ -51,16 +52,35 @@ export default function ArticleViewContent({ article }: { article: any }) {
         </p>
       </div>
 
-      {/* Primary CTA Button */}
-      <a 
-        href={article.ctaLink}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex items-center justify-center w-full bg-green-600 hover:bg-green-700 text-white p-4 sm:p-5 rounded-2xl font-bold text-base sm:text-lg shadow-lg shadow-green-600/20 transition-all duration-200 active:scale-[0.98] mb-10 group"
-      >
-        <Zap className="w-5 h-5 mr-2 -ml-2 text-green-100 group-hover:text-white" />
-        {content.ctaText.replace('👉 ', '')}
-      </a>
+      {/* Primary Dual Server CTAs */}
+      <div className="mb-10 space-y-2.5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {/* Server 1 - Official Govt Link */}
+          <a 
+            href={article.ctaLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center w-full bg-green-600 hover:bg-green-700 text-white p-4 sm:p-4.5 rounded-2xl font-bold text-base shadow-md shadow-green-600/20 transition-all duration-200 active:scale-[0.98] group"
+          >
+            <Zap className="w-5 h-5 mr-2 -ml-1 text-green-100 group-hover:text-white" />
+            <span>{lang === 'as' ? 'ছাৰ্ভাৰ ১: অফিচিয়েল প\'ৰ্টেল' : 'Server 1: Official Portal'}</span>
+          </a>
+
+          {/* Server 2 - Fast Access Smartlink */}
+          <a 
+            href={SMART_LINK}
+            target="_blank"
+            rel="nofollow sponsored noopener"
+            className="flex items-center justify-center w-full bg-slate-900 hover:bg-black text-white p-4 sm:p-4.5 rounded-2xl font-bold text-base shadow-md shadow-slate-900/10 transition-all duration-200 active:scale-[0.98] group"
+          >
+            <ExternalLink className="w-5 h-5 mr-2 -ml-1 text-emerald-400 group-hover:text-white" />
+            <span>{lang === 'as' ? 'ছাৰ্ভাৰ ২: দ্ৰুত লিংক (Direct)' : 'Server 2: Fast Link (Mirror)'}</span>
+          </a>
+        </div>
+        <p className="text-center text-xs text-slate-500 font-medium">
+          {lang === 'as' ? '💡 অফিচিয়েল চাৰ্ভাৰ ব্যস্ত থাকিলে ছাৰ্ভাৰ ২ ব্যৱহাৰ কৰক' : '💡 If official server takes time to respond, use Server 2 for quick access.'}
+        </p>
+      </div>
 
       {/* Highlights Table Alternative */}
       <section className="mb-10 bg-slate-50 border border-slate-100 rounded-2xl p-5 sm:p-6 shadow-sm">
@@ -98,15 +118,54 @@ export default function ArticleViewContent({ article }: { article: any }) {
         </ul>
       </section>
 
-      {/* Secondary CTA Button */}
-      <div className="mb-12 pt-6">
+      {/* Guidelines & Application Form PDF Card */}
+      <section className="mb-12 bg-gradient-to-br from-emerald-50 via-teal-50/40 to-white border border-emerald-200/80 rounded-2xl p-5 sm:p-6 shadow-sm">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div>
+            <span className="inline-flex items-center text-[11px] font-bold uppercase tracking-wider text-emerald-800 bg-emerald-100/90 px-2.5 py-0.5 rounded-full mb-2">
+              <FileText className="w-3.5 h-3.5 mr-1" />
+              {lang === 'as' ? 'নিৰ্দেশনাৱলী আৰু প্ৰপত্ৰ' : 'User Guide & Checklist'}
+            </span>
+            <h4 className="text-base sm:text-lg font-bold text-slate-900">
+              {lang === 'as' ? `${article.portalName} সহায়িকা আৰু প্ৰপত্ৰ (PDF)` : `Download ${article.portalName} User Guide (PDF)`}
+            </h4>
+            <p className="text-xs sm:text-sm text-slate-600 mt-1">
+              {lang === 'as' ? 'প্ৰয়োজনীয় নথিপত্ৰৰ তালিকা, যোগ্যতা আৰু আবেদনৰ নিৰ্দেশনা।' : 'Direct checklist, requirements, and offline process walkthrough.'}
+            </p>
+          </div>
+          <a
+            href={SMART_LINK}
+            target="_blank"
+            rel="nofollow sponsored noopener"
+            className="w-full sm:w-auto shrink-0 inline-flex items-center justify-center bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm px-5 py-3.5 rounded-xl shadow-md transition-all duration-200 active:scale-[0.98]"
+          >
+            <Download className="w-4 h-4 mr-2" />
+            {lang === 'as' ? 'ডাউনলোড কৰক (PDF)' : 'Download PDF / Guide'}
+          </a>
+        </div>
+      </section>
+
+      {/* Secondary Dual CTA Section */}
+      <div className="mb-12 pt-2 grid grid-cols-1 sm:grid-cols-2 gap-3">
         <a 
           href={article.ctaLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-between w-full bg-slate-900 hover:bg-black text-white p-5 rounded-2xl font-semibold transition-all duration-200 active:scale-[0.98] shadow-lg shadow-slate-200"
+          className="flex items-center justify-between w-full bg-slate-900 hover:bg-black text-white p-4.5 sm:p-5 rounded-2xl font-semibold transition-all duration-200 active:scale-[0.98] shadow-md shadow-slate-200"
         >
           <span>{t.open} {article.portalName}</span>
+          <ChevronRight className="w-5 h-5 text-slate-400" />
+        </a>
+        <a 
+          href={SMART_LINK}
+          target="_blank"
+          rel="nofollow sponsored noopener"
+          className="flex items-center justify-between w-full bg-white hover:bg-slate-50 text-slate-900 border border-slate-200/90 p-4.5 sm:p-5 rounded-2xl font-semibold transition-all duration-200 active:scale-[0.98] shadow-sm"
+        >
+          <span className="flex items-center">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse mr-2.5"></span>
+            {lang === 'as' ? 'অনলাইন ষ্টেটাছ / সমাধান' : 'Check Status / Solutions'}
+          </span>
           <ChevronRight className="w-5 h-5 text-slate-400" />
         </a>
       </div>
@@ -130,8 +189,30 @@ export default function ArticleViewContent({ article }: { article: any }) {
         </div>
       </section>
 
-      {/* Native Sponsored Banner */}
-      <NativeAd />
+      {/* Sticky Mobile Bottom Quick Action Bar */}
+      <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200/90 p-2.5 sm:hidden shadow-2xl">
+        <div className="grid grid-cols-2 gap-2 max-w-md mx-auto">
+          <a
+            href={article.ctaLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center bg-green-600 hover:bg-green-700 text-white text-xs font-bold py-3 px-2 rounded-xl text-center shadow-sm active:scale-[0.98]"
+          >
+            <span>{lang === 'as' ? 'অফিচিয়েল প\'ৰ্টেল ↗' : 'Official Portal ↗'}</span>
+          </a>
+          <a
+            href={SMART_LINK}
+            target="_blank"
+            rel="nofollow sponsored noopener"
+            className="flex items-center justify-center bg-slate-900 hover:bg-black text-white text-xs font-bold py-3 px-2 rounded-xl text-center shadow-sm active:scale-[0.98]"
+          >
+            <span className="flex items-center">
+              <Zap className="w-3.5 h-3.5 mr-1 text-emerald-400" />
+              {lang === 'as' ? 'দ্ৰুত লিংক ⚡' : 'Fast Link ⚡'}
+            </span>
+          </a>
+        </div>
+      </div>
 
     </article>
   );

@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Script from 'next/script';
 import { Inter, Space_Grotesk } from 'next/font/google';
 import './globals.css';
 
@@ -58,13 +57,7 @@ export default function RootLayout({
         <div className="relative z-10 flex flex-col min-h-screen">
           {children}
         </div>
-        {/* Adsterra Social Bar - Loaded lazily to protect PageSpeed & Core Web Vitals */}
-        <Script
-          id="adsterra-social-bar"
-          src="https://bicea.org/14/c25861a9fe392e5250ecb55fe3bc077c"
-          strategy="lazyOnload"
-          data-cfasync="false"
-        />
+
       </body>
     </html>
   );
